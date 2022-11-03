@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from elasticsearch import Elasticsearch
-import note
+
 
 app = Flask(__name__)
 es = Elasticsearch(['http://localhost:9200'])
@@ -21,14 +21,27 @@ def save_note():
         title = request.form.get("title")
         content = request.form.get("content")
 
-        data_doc = {
-            "Title": title,
-            "Content": content
+        doc = {
+            "title": title,
+            "content": content
         }
 
-        es.index(index="entries", document=data_doc)
+        resp = es.index(index="entries",  document=doc)
 
-    return "saved"
+    return resp['result']
+
+
+@app.route("/getsome")
+def get_notes():
+    resp = es.get(index="entries", id=1234)
+    return resp['_source']
+
+
+
+@app.route("/find")
+def findit():
+    resp = es.search(index="entries", query={"fuzzy": {"content": "dancing"}})
+    return resp["hits"]["hits"][0]['_source']['content']
 
 
 # @app.route("/records")
