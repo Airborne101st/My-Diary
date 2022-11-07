@@ -1,0 +1,13 @@
+.pad{
+    text-align: center;
+    
+}
+
+#noteinput{
+    height: 400px;
+    width: 250px;
+}
+
+#titleinput{
+    width: 250px;
+}
