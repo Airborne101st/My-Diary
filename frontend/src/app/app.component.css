@@ -1,0 +1,10 @@
+.tile{
+    margin-inline: 13px;
+    font-size: smaller;
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+    color: aliceblue;
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Model } from '../model';
 import { NoteServiceService } from '../note-service.service';
+
 
 @Component({
   selector: 'app-searchnotes',
@@ -9,6 +11,7 @@ import { NoteServiceService } from '../note-service.service';
 })
 export class SearchnotesComponent implements OnInit {
   searchForm: FormGroup;
+  notes: Model[] = []
 
   constructor(private service:NoteServiceService) 
   {
@@ -26,17 +29,13 @@ export class SearchnotesComponent implements OnInit {
   }
 
   askQuery(){
-    console.log(this.searchForm.value);
-    return this.service.find(this.searchForm.value).subscribe((response)=>{
-      console.log("in success");
-      console.log(response);
-      
-      
-    },
-    error =>{ "In error"});
+    return this.service.getnotes().subscribe(data=> 
+      {
+        this.notes = data
+      })
     
   }
-
+ 
 
 
 }

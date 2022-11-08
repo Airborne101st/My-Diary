@@ -1,13 +1,13 @@
 <div class="pad">
-    <form class="example-form" #createForm="ngForm" (ngSubmit)="saveNote(createForm.value)" name="myForm">
+    <form class="example-form" [formGroup]="addForm" (ngSubmit)="saveNote()">
       <mat-form-field style="width:30%;" class="example-full-width" appearance="fill">
         <mat-label>Title</mat-label>
-        <input id="titleinput"  matInput placeholder="Ex. Pizza" name="title" ngModel>
+        <input id="titleinput"  matInput placeholder="Ex. Pizza" formControlName="title" >
       </mat-form-field><br>
     
       <mat-form-field style="width:30%;" class="example-full-width" appearance="fill">
         <mat-label>Note</mat-label>
-        <textarea id="noteinput" name="note" matInput placeholder="Ex. It makes me feel..." ngModel></textarea>
+        <textarea id="noteinput" matInput placeholder="Ex. It makes me feel..." formControlName="content"></textarea>
       </mat-form-field><br>
      <button type="submit" mat-raised-button color="primary">Save</button>
     </form>

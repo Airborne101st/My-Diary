@@ -14,12 +14,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { SearchnotesComponent } from './searchnotes/searchnotes.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AllnotesComponent } from './allnotes/allnotes.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddnoteComponent,
-    SearchnotesComponent
+    SearchnotesComponent,
+    AllnotesComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule,
+    FlexLayoutModule
 
   ],
   providers: [],
