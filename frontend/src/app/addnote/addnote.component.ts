@@ -48,7 +48,7 @@ export class AddnoteComponent implements OnInit {
     this.service.save(this.model).subscribe(data=> 
       {console.log("good")
       
-      this.snack.open("Saved", "close")
+      this.snack.open("Saved", "close", {duration:3000})
       this.addForm.reset()
       
     })

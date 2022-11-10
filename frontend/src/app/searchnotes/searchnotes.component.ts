@@ -12,6 +12,8 @@ import { NoteServiceService } from '../note-service.service';
 export class SearchnotesComponent implements OnInit {
   searchForm: FormGroup;
   notes: Model[] = []
+  word:string = ""
+  message:string = ""
 
   constructor(private service:NoteServiceService) 
   {
@@ -29,11 +31,23 @@ export class SearchnotesComponent implements OnInit {
   }
 
   askQuery(){
-    return this.service.getnotes().subscribe(data=> 
+    this.word = this.query?.value
+    console.log(this.word);
+    
+    this.message = ""
+    return this.service.search(this.word).subscribe(data=>
       {
         this.notes = data
+        console.log(this.notes.length);
+        if (this.notes.length==0){
+          console.log("whoops");
+          
+          this.message="No matches found"
+        }
+        
       })
-    
+
+      
   }
  
 
