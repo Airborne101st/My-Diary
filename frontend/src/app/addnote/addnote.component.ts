@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NoteServiceService } from '../note-service.service';
 import { Model } from '../model';
-import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
@@ -21,8 +20,8 @@ export class AddnoteComponent implements OnInit {
   constructor(private service: NoteServiceService,
               private snack: MatSnackBar) {
     this.addForm = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      content: new FormControl('', [Validators.required])
+      title: new FormControl(''),
+      content: new FormControl('')
     })
    }
 
@@ -39,24 +38,29 @@ export class AddnoteComponent implements OnInit {
 
 
   saveNote(){
-    this.model.title = this.title?.value
-    this.model.content = this.content?.value
-    this.model.time = this.today
+    if(this.title?.value!="" && this.content?.value!=""){
 
-    console.log(this.model);
-
-    this.service.save(this.model).subscribe(data=> 
-      {console.log("good")
-      
-      this.snack.open("Saved", "close", {duration:3000})
-      this.addForm.reset()
-      
-    })
-
-
-
-    
+      this.model.title = this.title?.value
+      this.model.content = this.content?.value
+      this.model.time = this.today
   
+      console.log(this.model);
+  
+      this.service.save(this.model).subscribe(data=> 
+        {console.log("good")
+        
+        this.snack.open("Saved", "close", {duration:3000})
+        this.addForm.reset()
+        
+      })
+
+    }
+
+    else{
+      this.addForm.invalid
+    }
+  
+
     
   }
 

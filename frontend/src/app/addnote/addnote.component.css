@@ -1,6 +1,7 @@
 .pad{
     text-align: center;
-    
+    background-color: aliceblue;
+    height: 100%;
 }
 
 #noteinput{
@@ -10,4 +11,12 @@
 
 #titleinput{
     width: 250px;
+}
+
+.example-form{
+   
+}
+
+.example-full-width{
+    width: 100%;
 }

@@ -1,7 +1,7 @@
 <div class="searchbar">
 <form action="" [formGroup]="searchForm" (ngSubmit)="askQuery()">
     <input type="text" id="bar" formControlName="query" >
-    <button mat-icon-button type="submit">
+    <button mat-icon-button [disabled]="searchForm.invalid" type="submit">
         <mat-icon>search</mat-icon>
     </button>
     <h3>{{this.message}}</h3>

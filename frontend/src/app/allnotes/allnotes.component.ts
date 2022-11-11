@@ -21,9 +21,15 @@ export class AllnotesComponent implements OnInit {
     this.service.getnotes().subscribe(data=>
       {
         this.notes = data
-        console.log(data);
+        console.log(data[2]);
         
       })
+  }
+
+  deleteNote(){
+    console.log();
+    
+    alert("Are you sure you want to delete this note")
   }
 
 }
