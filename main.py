@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, request
 from elasticsearch import Elasticsearch
 from flask_cors import CORS
 from flask_restful import Resource, Api
@@ -18,8 +18,9 @@ results = []
 class AddNote(Resource):
     def post(self):
         body = request.get_json()
+        id = body["time"]
         try:
-            resp = es.index(index="test3", document=body)
+            resp = es.index(index="test3", document=body, id=id)
         except:
             resp = {"status": "Database error, Note could not be added"}
         return {"Status": resp['result']}
@@ -74,7 +75,7 @@ class DeleteNote(Resource):
             resp = es.delete(index="test3", id=id)
         except:
             resp = {"Error": "Invalid ID"}
-        return {"Status": resp['result']}
+        return resp
 
 
 class SearchNote(Resource):
@@ -88,6 +89,8 @@ class SearchNote(Resource):
         except:
             resp = {"Error": "Database error"}
         return results
+
+
 
 
 
