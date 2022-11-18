@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Model } from '../model';
 import { NoteServiceService } from '../note-service.service';
 import { DatePipe } from '@angular/common';
+import { Status } from '../../status';
 
 @Component({
   selector: 'app-allnotes',
@@ -10,6 +11,9 @@ import { DatePipe } from '@angular/common';
 })
 export class AllnotesComponent implements OnInit {
   notes:Model[] = []
+  id:number = 0
+
+
 
   constructor(private service: NoteServiceService ) { }
 
@@ -21,15 +25,19 @@ export class AllnotesComponent implements OnInit {
     this.service.getnotes().subscribe(data=>
       {
         this.notes = data
-        console.log(data[2]);
         
       })
   }
 
-  deleteNote(){
-    console.log();
-    
-    alert("Are you sure you want to delete this note")
+  deleteNote(note: Model){
+    this.id = note.time
+
+    this.service.delete(this.id).subscribe(data=>
+      {
+        console.log(data);
+        window.location.reload()
+      })
+
   }
 
 }

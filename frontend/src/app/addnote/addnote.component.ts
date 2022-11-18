@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup} from '@angular/forms';
 import { NoteServiceService } from '../note-service.service';
 import { Model } from '../model';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -43,6 +43,7 @@ export class AddnoteComponent implements OnInit {
       this.model.title = this.title?.value
       this.model.content = this.content?.value
       this.model.time = this.today
+    
   
       console.log(this.model);
   

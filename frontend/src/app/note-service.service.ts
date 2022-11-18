@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Status } from '../status';
 import { Model } from './model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,10 @@ export class NoteServiceService {
 
   search(word:string):Observable<Model[]>{
     return this.http.get<Model[]>(this.base_url + "search/" + word)
+  }
+
+  delete(id:number):Observable<Status>{
+    return this.http.delete<Status>(this.base_url + "delete/" + id)
   }
 
 
